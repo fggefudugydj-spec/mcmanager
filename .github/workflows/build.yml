@@ -21,3 +21,4 @@ jobs:
         with:
           name: MCVersionManager-apk
           path: MCVersionManager/app/build/outputs/apk/debug/app-debug.apk
+          
