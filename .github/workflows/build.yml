@@ -17,13 +17,13 @@ jobs:
           channel: stable
       - run: bash setup.sh
         working-directory: minecraft_manager
+      - name: Force compileSdk 36
+        run: |
+          mkdir -p ~/.gradle/init.d
+          printf '%s\n' 'allprojects {' '  afterEvaluate { p ->' "    if (p.hasProperty('android')) {" '      p.android.compileSdkVersion 36' '    }' '  }' '}' > ~/.gradle/init.d/fix.gradle
       - run: flutter build apk --release
         working-directory: minecraft_manager
       - uses: actions/upload-artifact@v4
         with:
           name: app-release
           path: minecraft_manager/build/app/outputs/flutter-apk/app-release.apk
-
-
-
-          
